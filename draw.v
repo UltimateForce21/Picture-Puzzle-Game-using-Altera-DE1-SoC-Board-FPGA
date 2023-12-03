@@ -144,11 +144,11 @@ module FSM(iResetn, oDone, image_select, location, draw, iClock, oPlot, iImage1,
    s_draw_4 = 4'd4,
    s_wait = 4'd5,
    s_piece_1 = 4'd6,
-   s_done_piece1 = 4'd7;
+   s_done_piece1 = 4'd7,
    s_piece_2 = 4'd8,
-   s_done_piece2 = 4'd9;
+   s_done_piece2 = 4'd9,
    s_piece_3 = 4'd10,
-   s_done_piece1 = 4'd11;
+   s_done_piece3 = 4'd11,
    s_piece_4 = 4'd12,
    s_done_piece4 = 4'd13;
    
@@ -367,27 +367,27 @@ module Datapath(iResetn, image_select, location, iClock, oPlot, iImage1, iImage2
          oColour <= 0;
          xCounter <= 0;
          yCounter <= 0;
-         if(xCounter == 8'd79 && yCounter == 7'd59) begin
-                  oX <= pv_image1_x + xCounter;
-                  oY <=  pv_image1_y + yCounter;
-                  oColour <= iImage1;
-                  //setting next image location
-                  xCounter <= 0;
-                  yCounter <= 0;                 
-               end
-               else begin
-                  oX <= pv_image1_x + xCounter;
-                  oY <= pv_image1_y + yCounter;
-                  oColour <= iImage1;
-                     
-                  if(xCounter == 8'd79 && yCounter != 7'd59) begin
-                     xCounter <=  0;
-                     yCounter <= yCounter + 1;
-                  end
-                  else begin
-                     xCounter <= xCounter + 1;
-                  end
-               end
+         if(xCounter == 8'd321 && yCounter == 7'd241) begin
+            oX <= pv_image1_x + xCounter;
+            oY <=  pv_image1_y + yCounter;
+            oColour <= iImage1;
+            //setting next image location
+            xCounter <= 0;
+            yCounter <= 0;                 
+         end
+         else begin
+            oX <= pv_image1_x + xCounter;
+            oY <= pv_image1_y + yCounter;
+            oColour <= 24'd0;
+               
+            if(xCounter == 8'd321 && yCounter != 7'd241) begin
+               xCounter <=  0;
+               yCounter <= yCounter + 1;
+            end
+            else begin
+               xCounter <= xCounter + 1;
+            end
+         end
 
 
       end
