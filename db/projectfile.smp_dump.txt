@@ -1,0 +1,9 @@
+
+State Machine - |fill|draw:d1|FSM:F0|current_state
+Name current_state.s_wait current_state.s_draw_5 current_state.s_draw_4 current_state.s_draw_3 current_state.s_draw_2 current_state.s_draw_1 
+current_state.s_draw_1 0 0 0 0 0 0 
+current_state.s_draw_2 0 0 0 0 1 1 
+current_state.s_draw_3 0 0 0 1 0 1 
+current_state.s_draw_4 0 0 1 0 0 1 
+current_state.s_draw_5 0 1 0 0 0 1 
+current_state.s_wait 1 0 0 0 0 1 

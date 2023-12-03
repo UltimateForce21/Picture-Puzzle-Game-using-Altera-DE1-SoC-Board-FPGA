@@ -1,0 +1,189 @@
+// Todo:
+
+/*
+Todo:
+1. Instatiate the module for the ram and connect it to iPixel, make sure that I am iterating through the pixels correctly
+2. Finish the data path
+3. Fix Draw module instantiations of FSM and Data path
+
+Created address interpreter
+*/
+
+module draw(iResetn, iImage, iLocation, iPixel, iClock, oX, oY, oColour, oPlot, readAddress);
+   parameter X_SCREEN_PIXELS = 9'd320;
+   parameter Y_SCREEN_PIXELS = 8'd240;
+
+
+   input wire [1:0] iImage;
+   input wire [1:0] iLocation;
+   input wire iResetn;
+   input wire [23:0] iPixel;
+   input wire 	    iClock;
+   output wire [8:0] oX;         // VGA pixel coordinates
+   output wire [7:0] oY;
+
+   output wire [23:0] oColour;     // VGA pixel colour (0-7)
+   output wire 	     oPlot;       // Pixel draw enable
+
+   //remember to delete
+   assign iImage = 0;
+   assign iLocation = 0;
+   assign iPixel = 0;
+
+
+
+   //
+   // Your code goes here
+
+	wire [6:0] xCounter;
+	wire [5:0] yCounter;
+   output wire [16:0] readAddress;
+   
+   interpretCoords iC(xCounter, yCounter, readAddress); 
+   
+
+   //imageram IM1(address, clock, data, 1'b0, q);
+   
+   FSM #(.X_SCREEN_PIXELS(X_SCREEN_PIXELS), .Y_SCREEN_PIXELS(Y_SCREEN_PIXELS)) F0 (iResetn, iImage, iLocation, iClock, oPlot, iPixel, xCounter, yCounter);
+
+   Datapath  #(.X_SCREEN_PIXELS(X_SCREEN_PIXELS), .Y_SCREEN_PIXELS(Y_SCREEN_PIXELS)) D0(iResetn, iImage, iLocation, iClock, oPlot, iPixel, oColour, oX, oY, xCounter, yCounter);
+   
+
+endmodule // draw module
+
+module interpretCoords(xCounter, yCounter, address);
+   input wire [6:0] xCounter;
+	input wire [5:0] yCounter;
+   output reg [12:0] address;
+
+   always@(*) begin
+      address <=  xCounter + 7'd80*yCounter;
+   end
+
+endmodule //interpretCoords
+
+module FSM(iResetn, iImage, iLocation, iClock, oPlot, iPixel, xCounter, yCounter);
+   
+   parameter X_SCREEN_PIXELS = 8'd160;
+   parameter Y_SCREEN_PIXELS = 7'd120;
+
+   input wire iResetn;
+   input wire [1:0] iImage;
+   input wire [1:0] iLocation;
+   input wire iClock;
+   output reg oPlot;
+   input wire iPixel;
+
+   input wire [6:0] xCounter;
+   input wire [5:0] yCounter;
+   
+   
+   reg [2:0] current_state;
+   reg [2:0] next_state;
+   
+   localparam 
+   s_draw_1 = 3'd0, 
+   s_wait = 3'd2;
+   
+    always@(*)
+    begin: state_table
+		case (current_state)
+		  s_draw_1: 
+		  begin
+			 if(yCounter == 7'd79 && xCounter == 8'd59) next_state = s_wait;
+		  end
+		   
+		  s_wait: next_state = s_wait; //cycle to draw the imputted pixel
+		  //S_RESET: next_state = iLoadX ? S_LOAD_X : S_RESET; // we will be done all our operations, start over after
+	   default: next_state = s_draw_1;
+	   
+	   endcase
+          
+    end // state_table
+ 
+    // Output logic aka all of our datapath control signals
+    always @(*)
+    begin: enable_signals
+        // By default make all our signals 0
+		oPlot <= 0;
+        case (current_state)
+			s_draw_1: oPlot <= 1;
+		endcase
+	end
+
+   // current_state registers
+   always@(posedge iClock)
+   begin: state_FFs
+      if(iResetn == 0) begin
+         current_state <= s_draw_1;
+      end
+      else
+         current_state <= next_state;
+   end // state_FFS
+
+
+endmodule
+
+module Datapath(iResetn, iImage, iLocation, iClock, oPlot, iPixel, oColour, oX, oY, xCounter, yCounter);
+   
+   parameter X_SCREEN_PIXELS = 8'd160;
+   parameter Y_SCREEN_PIXELS = 7'd120;
+   
+   input wire iResetn;
+   input wire [1:0] iImage;
+   input wire [1:0] iLocation;
+ 
+   input wire [23:0] iPixel;
+   input wire iClock;
+   output reg [8:0] oX;         // VGA pixel coordinates
+   output reg [7:0] oY;
+
+
+   input wire oPlot;
+
+   output reg [23:0] oColour;     // VGA pixel colour (0-7)
+   
+   output reg [6:0] xCounter;
+	output reg [5:0] yCounter;
+
+   always@(posedge iClock) begin
+      if(!iResetn) begin
+         oX <= 0;
+         oY <= 0;
+         oColour <= 0;
+         xCounter <= 0;
+         yCounter <= 0;
+         readAddress <= 0;
+      end
+      else begin
+		if(oPlot == 1) begin
+            if(xCounter == 8'd79 && yCounter == 7'd59) begin
+               oX <= xCounter;
+               oY <= yCounter;
+               oColour <= iPixel;
+               xCounter <= 8'd0;
+               yCounter <= 7'd0;
+               readAddress <= 0;
+            end
+            else begin
+               oX <= xCounter;
+               oY <= yCounter;
+               oColour <= iPixel;
+                  
+               if(xCounter == 8'd79 && yCounter != 7'd59) begin
+                  xCounter <= 8'd0;
+                  yCounter <= yCounter + 1;
+               end
+               else begin
+                  xCounter <= xCounter + 1;
+               end
+            end
+         end
+
+
+      end
+
+
+   end
+
+endmodule

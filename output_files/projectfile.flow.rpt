@@ -1,0 +1,129 @@
+Flow report for projectfile
+Sat Dec 02 11:35:13 2023
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Sat Dec 02 11:35:02 2023       ;
+; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
+; Revision Name                   ; projectfile                                 ;
+; Top-level Entity Name           ; fill                                        ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CSEMA5F31C6                                ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 217 / 32,070 ( < 1 % )                      ;
+; Total registers                 ; 148                                         ;
+; Total pins                      ; 48 / 457 ( 11 % )                           ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 2,534,400 / 4,065,280 ( 62 % )              ;
+; Total DSP Blocks                ; 0 / 87 ( 0 % )                              ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 1 / 6 ( 17 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 12/02/2023 11:33:37 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; projectfile         ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                        ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID               ; 79349043451450.170153481717804         ; --            ; --          ; --         ;
+; MISC_FILE                           ; topleft_bb.v                           ; --            ; --          ; --         ;
+; MISC_FILE                           ; topright_bb.v                          ; --            ; --          ; --         ;
+; MISC_FILE                           ; bottomleft_bb.v                        ; --            ; --          ; --         ;
+; MISC_FILE                           ; bottomright_bb.v                       ; --            ; --          ; --         ;
+; MISC_FILE                           ; selectionTitle_bb.v                    ; --            ; --          ; --         ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; fill        ; Top        ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --            ; fill        ; Top        ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --            ; fill        ; Top        ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --            ; --          ; --         ;
+; TOP_LEVEL_ENTITY                    ; fill                                   ; projectfile   ; --          ; --         ;
++-------------------------------------+----------------------------------------+---------------+-------------+------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:13     ; 1.0                     ; 4889 MB             ; 00:00:12                           ;
+; Fitter               ; 00:01:02     ; 1.3                     ; 6944 MB             ; 00:01:58                           ;
+; Assembler            ; 00:00:08     ; 1.0                     ; 4879 MB             ; 00:00:08                           ;
+; Timing Analyzer      ; 00:00:10     ; 2.8                     ; 5265 MB             ; 00:00:21                           ;
+; Total                ; 00:01:33     ; --                      ; --                  ; 00:02:39                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                    ;
++----------------------+------------------+------------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
++----------------------+------------------+------------+------------+----------------+
+; Analysis & Synthesis ; ultimateforce21  ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; ultimateforce21  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ultimateforce21  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; ultimateforce21  ; Windows 10 ; 10.0       ; x86_64         ;
++----------------------+------------------+------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off projectfile -c projectfile
+quartus_fit --read_settings_files=off --write_settings_files=off projectfile -c projectfile
+quartus_asm --read_settings_files=off --write_settings_files=off projectfile -c projectfile
+quartus_sta projectfile -c projectfile
+
+
+
