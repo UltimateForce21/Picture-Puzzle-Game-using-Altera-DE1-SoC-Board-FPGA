@@ -8,7 +8,15 @@ module fill
 		// Your inputs and outputs here
 		SW,
 		KEY,
-		LEDR,							// On Board Keys
+		LEDR,
+		HEX0,
+		HEX1, 
+		HEX2,
+		HEX3,
+		HEX4,
+		HEX5,
+		HEX6,
+		HEX7,							// On Board Keys
 		// The ports below are for the VGA output.  Do not change.
 		VGA_CLK,   						//	VGA Clock
 		VGA_HS,							//	VGA H_SYNC
@@ -23,7 +31,7 @@ module fill
 	input			CLOCK_50;				//	50 MHz
 	input	[3:0]	KEY;
 	input	[9:0]	SW;
-	output [3:0]	LEDR;	
+	output [3:0]	LEDR;			
 	// Declare your inputs and outputs here
 	// Do not change the following outputs
 	output			VGA_CLK;   				//	VGA Clock
@@ -34,25 +42,64 @@ module fill
 	output	[7:0]	VGA_R;   				//	VGA Red[7:0] Changed from 10 to 8-bit DAC
 	output	[7:0]	VGA_G;	 				//	VGA Green[7:0]
 	output	[7:0]	VGA_B;   				//	VGA Blue[7:0]
+	output		[6:0]	HEX0;
+	output		[6:0]	HEX1;
+	output		[6:0]	HEX2;
+	output		[6:0]	HEX3;
+	output		[6:0]	HEX4;
+	output		[6:0]	HEX5;
+	output		[6:0]	HEX6;
+	output		[6:0]	HEX7;
 	
 	wire resetn;
 	assign resetn = KEY[0];	
-	
+	wire [1:0] image_select;
+	wire [1:0] location;
 	// Create the colour, x, y and writeEn wires that are inputs to the controller.
-
 	wire [23:0] colour;
-	wire [7:0] oX;
-	wire [6:0] oY;
-	wire [1:0] iImage;
-	wire [1:0] iLocation;
-	assign iImage = SW[1:0];
-	assign iLocation = SW[3:2];
+	wire [9:0] oX;
+	wire [8:0] oY;
+	
+	assign image_select = SW[1:0];
+	assign location = SW[3:2];
 	wire writeEn;
 	assign LEDR[0] = writeEn;
+	wire oDone;
 	
+	wire clear = ~KEY[2];
+	//wire clear;
+	wire draw = ~KEY[1]; 
+	//wire draw;
+
+	//wire [2:0] DataIn = SW[2:0];
+	wire [2:0] DataIn;
+	wire didwin;
+	wire PS2_CLK, PS2_DAT;
+	
+	wire [3:0] DataResult;
+	
+	
+	//PS2_Demo ps2(CLOCK_50, resetn, PS2_CLK, PS2_DAT, DataIn, HEX0);
+	PS2_Demo ps2(CLOCK_50, KEY, PS2_CLK, PS2_DAT, DataIn, HEX0, HEX1, HEX2, HEX3, HEX4, HEX5, HEX6, HEX7);
+
 
 	// Create an Instance of a VGA controller - there can be only one!
-	draw d1(resetn, iImage, iLocation, CLOCK_50, oX, oY, colour, writeEn);
+	//update u1(CLOCK_50, resetn, DataIn, DataResult, location, oDone, didwin, draw, clear);
+ /*  input Clock,
+  input Reset,
+  input [2:0] DataIn,
+  output  [2:0] DataResult,
+  input done,
+  output  didwin,
+  output  draw,
+  output clear,
+  output reg [6:0] HEX0 */
+
+	draw2 d1 (resetn, clear, image_select, location, draw, oDone, CLOCK_50, oX, oY, colour, writeEn);
+
+
+	//How draw 2 input ports look like
+	//draw2(iResetn, image_select, location, draw, oDone, iClock, oX, oY, oColour, oPlot)
 	
 	// Define the number of colours as well as the initial background
 	// image file (.MIF) for the controller.

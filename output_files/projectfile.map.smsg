@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at draw.v(106): always construct contains both blocking and non-blocking assignments File: C:/Users/abdul/Downloads/project241drawmodule/project241/draw.v Line: 106
+Warning (10268): Verilog HDL information at draw2.v(161): always construct contains both blocking and non-blocking assignments File: C:/Users/abdul/Downloads/project241drawmodule/project241/draw2.v Line: 161

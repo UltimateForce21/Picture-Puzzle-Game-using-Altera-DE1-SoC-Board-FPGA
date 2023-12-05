@@ -9,37 +9,57 @@ z2
 cModel Technology
 Z0 dW:/ECE241/project241/project241
 vDatapath
-Z1 !s110 1701566773
+Z1 !s110 1701663785
 !i10b 1
-!s100 0^3_Ba^OmF>@4cdQb8f4]0
-I=Z;hb_F?z>53CHiAQ25c<2
+!s100 EQ:mR0XWPWFzVB30V<@b<3
+IkUPnboFVZPIZoMU^6SPD@1
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dC:/Users/abdul/Downloads/project241drawmodule/project241
-Z4 w1701566706
-Z5 8draw.v
-Z6 Fdraw.v
-L0 280
+Z4 w1701655561
+Z5 8draw2.v
+Z6 Fdraw2.v
+L0 344
 Z7 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z8 !s108 1701566773.000000
-Z9 !s107 draw.v|
-Z10 !s90 -reportprogress|300|draw.v|
+Z8 !s108 1701663785.000000
+Z9 !s107 draw2.v|
+Z10 !s90 -reportprogress|300|draw2.v|
 !i113 1
 Z11 tCvgOpt 0
 n@datapath
 vdraw
+!s110 1701623811
+!i10b 1
+!s100 KT?zBRLg>NY8HmRHUzL_O3
+InReB`GW457WX9ac:ZF^jn1
+R2
+R3
+w1701623540
+Z12 8draw.v
+Z13 Fdraw.v
+L0 20
+R7
+r1
+!s85 0
+31
+!s108 1701623811.000000
+Z14 !s107 draw.v|
+Z15 !s90 -reportprogress|300|draw.v|
+!i113 1
+R11
+vdraw2
 R1
 !i10b 1
-!s100 4>=kZCHTef21S]H`1e3:Y0
-I`e_hK`[lMKI8lO`l6R:1e1
+!s100 E3@0=ggMW]e7mFe=EWzf40
+Idf`R<HDIWn2^lJmc^Zg`m3
 R2
 R3
 R4
 R5
 R6
-L0 20
+L0 27
 R7
 r1
 !s85 0
@@ -72,14 +92,14 @@ R11
 vFSM
 R1
 !i10b 1
-!s100 G`<:ck[Y^ZAdhSW@B3:NF0
-I]DbTUD923F0F<ASjFa8Y41
+!s100 GU<?RB73ZVM<<Kn0Wn`@E3
+ILM22NR7=O_4jPlOaQALTP1
 R2
 R3
 R4
 R5
 R6
-L0 112
+L0 126
 R7
 r1
 !s85 0
@@ -119,30 +139,30 @@ IfP<ik_fF?ek`_ho<^4dMN1
 R2
 R3
 w1701529160
-R5
-R6
+R12
+R13
 L0 69
 R7
 r1
 !s85 0
 31
 !s108 1701529189.000000
-R9
-R10
+R14
+R15
 !i113 1
 R11
 ninterpret@coords
 vinterpretCoords160x60
 R1
 !i10b 1
-!s100 nUW0?Z:_6zb^g_>7H:Bhl2
-I2:HVQY_G0Y;jZ5:`3e?NI0
+!s100 `oRT_E:MWTk;0KIL]jD:]2
+I50QT;3RzKa0d;274C@h1J2
 R2
 R3
 R4
 R5
 R6
-L0 86
+L0 100
 R7
 r1
 !s85 0
@@ -156,14 +176,14 @@ ninterpret@coords160x60
 vinterpretCoords80x60
 R1
 !i10b 1
-!s100 Q=KZn=A053R43_h1VU@OK1
-I[JcQ^R9@ASfXZfIUdz3GM1
+!s100 33RLQ?=BX?WfRFAgo35=31
+I7mH@@;Y`Z3RVfmC@QKbCX2
 R2
 R3
 R4
 R5
 R6
-L0 99
+L0 113
 R7
 r1
 !s85 0
@@ -182,16 +202,16 @@ I@FCQX<[dFQQf=A7c`><e[2
 R2
 R3
 w1701506359
-R5
-R6
+R12
+R13
 L0 64
 R7
 r1
 !s85 0
 31
 !s108 1701506375.000000
-R9
-R10
+R14
+R15
 !i113 1
 R11
 ninterpret@counters
