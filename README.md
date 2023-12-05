@@ -1,4 +1,4 @@
-#MARCUS RASHFORD JIGSAW PUZZLE USING FPGA
+# MARCUS RASHFORD JIGSAW PUZZLE USING FPGA
 - we developed a jigsaw puzzle using an altera de1 soc board fpga
 - we coded our project using verilog
 
