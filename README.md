@@ -1,6 +1,7 @@
 # Picture Puzzle using ALtera DE1-SoC Board FPGA
 - we developed a jigsaw puzzle using an altera de1 soc board fpga
 - we coded our project using verilog
+- here's a demo of our project: https://www.youtube.com/watch?v=CnN2Cnvc1Ao
 
 ## Key Aspects 
 - preloading and reading sram on the fpga
